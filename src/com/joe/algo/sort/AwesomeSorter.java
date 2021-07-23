@@ -99,6 +99,12 @@ public class AwesomeSorter {
         _mergeSort(array, 0, size - 1);
     }
 
+    /**
+     * 实际是一个后序遍历
+     * @param array
+     * @param start
+     * @param end
+     */
     private void _mergeSort(int[] array, int start, int end) {
         if (start >= end) {
             return;
@@ -136,8 +142,54 @@ public class AwesomeSorter {
         }
 
         // 将数据从临时数组拷贝回来
-        for (int idx = 0; idx < k; idx++) {
-            array[start + idx] = tmp[idx];
+        if (k >= 0) System.arraycopy(tmp, 0, array, start, k);
+    }
+
+    /**
+     * 快速排序
+     * @param array
+     */
+    public void quickSort(int[] array) {
+        int size = array.length;
+        if (size <= 1) {
+            // 只有一个元素，无需排序
+            return;
         }
+        _quickSort(array, 0, size - 1);
+    }
+
+    /**
+     * 前序遍历
+     * @param array
+     * @param start
+     * @param end
+     */
+    private void _quickSort(int[] array, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int mid = _partition(array, start, end);
+        _quickSort(array, start, mid - 1); // 这边-1是因为mid的位置是确定的
+        _quickSort(array, mid + 1, end);
+    }
+
+    private int _partition(int[] array, int start, int end) {
+        int pivot = array[end];
+        int i = start;
+        for (int j = start; j < end; j++) {
+            if (array[j] < pivot) {
+                // 和array[i]交换
+                // 异或交换法不适用于相等元素，变成0了
+                int tmp = array[i];
+                array[i] = array[j];
+                array[j] = tmp;
+                i++;
+            }
+        }
+        // 处理pivot
+        int tmp = array[i];
+        array[i] = array[end];
+        array[end] = tmp;
+        return i;
     }
 }
