@@ -192,4 +192,36 @@ public class AwesomeSorter {
         array[end] = tmp;
         return i;
     }
+
+    /**
+     * 计数排序
+     * @param array 数据在0~n-1范围内
+     * @param n
+     */
+    public void countSort(int[] array, int n) {
+        int size = array.length;
+        if (size <= 1) {
+            // 只有一个元素，无需排序
+            return;
+        }
+        int[] tmp = new int[size];
+        int[] counter = new int[n];
+        for (int i : array) {
+            counter[i]++;
+        }
+        for (int j = 0; j < n - 1; j++) {
+            counter[j + 1] += counter[j];
+        }
+        // array = {2, 5, 3, 0, 2, 3, 0, 3}
+        // counter = {2, 2, 4, 7, 7, 8}
+        // 2个0, 0个1, 2个2...
+        for (int k = size - 1; k >= 0; k--) {
+            int value = array[k];
+            // 注意下标 - 1
+            int position = counter[array[k]] - 1;
+            tmp[position] = value;
+            counter[array[k]]--;
+        }
+        System.arraycopy(tmp, 0, array, 0, size);
+    }
 }
