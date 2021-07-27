@@ -1,4 +1,4 @@
-package com.joe.algo.list;
+package com.joe.algo.search;
 
 import java.util.Random;
 
