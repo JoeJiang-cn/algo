@@ -32,8 +32,28 @@ public class BinarySearchTest {
     }
 
     @Test
-    public void testSearchMostLeft() {
+    public void testSearchFirstEqual() {
         int[] array = {1, 3, 4, 5, 6, 8, 8, 8, 11, 18};
-        Assert.assertEquals(binarySearch.searchMostLeft(array, 8), 5);
+        Assert.assertEquals(binarySearch.searchFirstEqual(array, 8), 5);
+    }
+
+    @Test
+    public void testSearchLastEqual() {
+        int[] array = {1, 3, 4, 5, 6, 8, 8, 8, 11, 18};
+        Assert.assertEquals(binarySearch.searchLastEqual(array, 8), 7);
+    }
+
+    @Test
+    public void testSearchFirstGE() {
+        int[] array = {1, 3, 4, 5, 6, 8, 8, 8, 11, 18};
+        Assert.assertEquals(binarySearch.searchFirstGE(array, 2), 1);
+        Assert.assertEquals(binarySearch.searchFirstGE(array, 20), -1);
+    }
+
+    @Test
+    public void testSearchLastLE() {
+        int[] array = {1, 3, 4, 5, 6, 8, 8, 8, 11, 18};
+        Assert.assertEquals(binarySearch.searchLastLE(array, 7), 4);
+        Assert.assertEquals(binarySearch.searchLastLE(array, 8), 5);
     }
 }
