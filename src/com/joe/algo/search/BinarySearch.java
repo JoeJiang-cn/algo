@@ -148,4 +148,36 @@ public class BinarySearch {
         }
         return -1;
     }
+
+    /**
+     * 在循环数组中查找
+     * @param array
+     * @param value
+     * @return
+     */
+    public int searchInLoopArray(int[] array, int value) {
+        int low = 0, high = array.length - 1;
+        while (low <= high) {
+            int mid = low + ((high - low) >> 1);
+            if (array[mid] == value) {
+                return mid;
+            }
+            if (array[mid] >= array[low]) {
+                // 说明左半区为升序
+                if (value < array[mid] && value >= array[low]) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            } else {
+                // 说明右半区为升序
+                if (value > array[mid] && value <= array[high]) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
 }

@@ -1,4 +1,4 @@
-package com.joe.algo.search;
+package com.joe.algo.structure.list;
 
 import java.util.Random;
 
@@ -42,6 +42,7 @@ public class SkipList {
         // 每次都从头开始找
         Node node = head;
         while(true) {
+            // 向右下找
             while(node.right.data < Integer.MAX_VALUE && node.right.data <= data) {
                 node = node.right;
             }
