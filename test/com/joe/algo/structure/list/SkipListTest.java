@@ -1,5 +1,6 @@
-package com.joe.algo.search;
+package com.joe.algo.structure.list;
 
+import com.joe.algo.structure.list.SkipList;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

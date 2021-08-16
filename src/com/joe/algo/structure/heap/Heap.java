@@ -105,6 +105,15 @@ public class Heap {
         return a[1];
     }
 
+    public int[] getArray() {
+        // move the position
+        int[] array = new int[count];
+        for (int i = 0; i < count; i++) {
+            array[i] = a[i + 1];
+        }
+        return array;
+    }
+
     /**
      * swap two values
      * @param a

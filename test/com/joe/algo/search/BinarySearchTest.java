@@ -56,4 +56,10 @@ public class BinarySearchTest {
         Assert.assertEquals(binarySearch.searchLastLE(array, 7), 4);
         Assert.assertEquals(binarySearch.searchLastLE(array, 8), 5);
     }
+
+    @Test
+    public void testSearchInLoopArray() {
+        int[] array = {6, 7, 8, 9, 0, 1, 2, 3};
+        Assert.assertEquals(binarySearch.searchInLoopArray(array, 0), 4);
+    }
 }
