@@ -5,25 +5,15 @@ import java.util.Queue;
 
 /**
  * @author Joe
- * 无向图
- * 2021/8/14 16:49
+ * 基于无向图的广度优先和深度优先遍历
+ * 2021/9/2 20:02
  */
-public class Graph {
-    private int v; // 顶点的个数
-    private LinkedList<Integer>[] adj; // 邻接表
+public class Traversal {
+    private UndirectedGraph graph;
     private boolean found = false; // dfs
 
-    public Graph(int v) {
-        this.v = v;
-        adj = new LinkedList[v];
-        for (int i = 0; i < v; i++) {
-            adj[i] = new LinkedList<>();
-        }
-    }
-
-    public void addEdge(int s, int t) {
-        adj[s].add(t);
-        adj[t].add(s);
+    public Traversal(UndirectedGraph graph) {
+        this.graph = graph;
     }
 
     /**
@@ -35,17 +25,17 @@ public class Graph {
         if (s == t) {
             return;
         }
-        boolean[] visited = new boolean[v];
+        boolean[] visited = new boolean[graph.v];
         visited[s] = true;
-        int[] prev = new int[v];
-        for (int i = 0; i < v; i++) {
+        int[] prev = new int[graph.v];
+        for (int i = 0; i < graph.v; i++) {
             prev[i] = -1;
         }
         Queue<Integer> queue = new LinkedList<>();
         queue.offer(s);
         while (!queue.isEmpty()) {
             int node = queue.poll();
-            for (int next : adj[node]) {
+            for (int next : graph.adj[node]) {
                 if (!visited[next]) {
                     prev[next] = node;
                     if (next == t) {
@@ -65,10 +55,10 @@ public class Graph {
      * @param t
      */
     public void dfs(int s, int t) {
-        boolean[] visited = new boolean[v];
+        boolean[] visited = new boolean[graph.v];
         visited[s] = true;
-        int[] prev = new int[v];
-        for (int i = 0; i < v; i++) {
+        int[] prev = new int[graph.v];
+        for (int i = 0; i < graph.v; i++) {
             prev[i] = -1;
         }
         recurDfs(s, t, visited, prev);
@@ -83,7 +73,7 @@ public class Graph {
             found = true;
             return;
         }
-        for (int next : adj[current]) {
+        for (int next : graph.adj[current]) {
             if (!visited[next]) {
                 prev[next] = current;
                 visited[next] = true;
@@ -103,7 +93,6 @@ public class Graph {
             // 退出条件就是追溯到起点的时候
             print(prev, s, prev[t]);
         }
-        System.out.print(t + " ");
+        System.out.print("->" + t);
     }
-
 }
