@@ -53,7 +53,7 @@ public class ShortestPath {
             for (int i = 0; i < adj[minVertex.id].size(); i++) {
                 // 遍历当前顶点的所有边
                 Edge e = adj[minVertex.id].get(i);
-                // 获取相邻顶点
+                // 获取这条边的另一顶点
                 Vertex nextVertex = vertices[e.tid];
                 if (minVertex.dist + e.w < nextVertex.dist) {
                     // 更新距离

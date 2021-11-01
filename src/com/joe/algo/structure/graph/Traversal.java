@@ -69,6 +69,7 @@ public class Traversal {
         if (found) {
             return;
         }
+        visited[current] = true;
         if (current == t) {
             found = true;
             return;
@@ -76,7 +77,6 @@ public class Traversal {
         for (int next : graph.adj[current]) {
             if (!visited[next]) {
                 prev[next] = current;
-                visited[next] = true;
                 recurDfs(next, t, visited, prev);
             }
         }
