@@ -1,5 +1,6 @@
-package com.joe.algo.structure;
+package com.joe.algo;
 
+import com.joe.algo.structure.LRUCache;
 import org.junit.Assert;
 import org.junit.Test;
 

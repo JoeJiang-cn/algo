@@ -91,9 +91,10 @@ public class Heap {
                 maxPos = i * 2;
             }
             if (i * 2 + 1 <= n && a[maxPos] < a[i * 2 + 1]) {
-                maxPos = i * 2 + 1;
+                maxPos = i * 2 + 1; // 左子节点和右子节点比较
             }
             if (maxPos == i) {
+                // 无法再堆化，直接停止
                 break;
             }
             swap(a, i, maxPos);
