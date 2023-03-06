@@ -21,9 +21,9 @@ public class AwesomeSorter {
             for (int j = 0; j < size - i - 1; j++) {
                 if (array[j] > array[j + 1]) {
                     // 交换array[j]和array[j+1]
-                    array[j] ^= array[j + 1];
-                    array[j + 1] ^= array[j];
-                    array[j] ^= array[j + 1];
+                    int tmp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = tmp;
                     flag = true;
                 }
             }
@@ -79,9 +79,9 @@ public class AwesomeSorter {
             }
             if (min != array[i]) {
                 // 如果最小值不是当前元素的话，交换
-                array[i] ^= array[minIndex];
-                array[minIndex] ^= array[i];
-                array[i] ^= array[minIndex];
+                int tmp = array[i];
+                array[i] = array[minIndex];
+                array[minIndex] = tmp;
             }
         }
     }
@@ -109,7 +109,7 @@ public class AwesomeSorter {
         if (start >= end) {
             return;
         }
-        int mid = (start + end) / 2;
+        int mid = start + (start - end) / 2;
         _mergeSort(array, start, mid);
         _mergeSort(array, mid + 1, end);
         _merge(array, start, mid, end);

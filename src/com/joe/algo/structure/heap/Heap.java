@@ -86,8 +86,10 @@ public class Heap {
      */
     private static void heapify(int[] a, int n, int i) {
         while(true) {
+            // maxPos is the max number in the child tree whose root is i
             int maxPos = i;
             if (i * 2 <= n && a[i] < a[i * 2]) {
+                // compare with left child
                 maxPos = i * 2;
             }
             if (i * 2 + 1 <= n && a[maxPos] < a[i * 2 + 1]) {

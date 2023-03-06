@@ -148,10 +148,16 @@ public class ShortestPath {
             if (isEmpty()) {
                 return;
             }
+            int updated = 0;
             for (int i = 1; i < count; i++) {
                 if (nodes[i].id == vertex.id) {
                     nodes[i].dist = vertex.dist;
+                    updated = i;
                 }
+            }
+            while (updated > 0) {
+                heapify(count, updated);
+                updated = updated / 2;
             }
         }
 
@@ -167,18 +173,18 @@ public class ShortestPath {
 
         private void heapify(int n, int i) {
             while(true) {
-                int maxPos = i;
+                int minPos = i;
                 if (i * 2 <= n && nodes[i].dist > nodes[i * 2].dist) {
-                    maxPos = i * 2;
+                    minPos = i * 2;
                 }
-                if (i * 2 + 1 <= n && nodes[maxPos].dist > nodes[i * 2 + 1].dist) {
-                    maxPos = i * 2 + 1;
+                if (i * 2 + 1 <= n && nodes[minPos].dist > nodes[i * 2 + 1].dist) {
+                    minPos = i * 2 + 1;
                 }
-                if (maxPos == i) {
+                if (minPos == i) {
                     break;
                 }
-                swap(i, maxPos);
-                i = maxPos;
+                swap(i, minPos);
+                i = minPos;
             }
         }
     }
